@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beta 4 – Game Discounts</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="#" class="logo">Home</a>
+  </header>
+
+  <main class="hero">
+    <svg class="arch" viewBox="0 0 600 190" role="img" aria-label="Beta 4">
+      <defs>
+        <path id="arc" d="M 50 185 A 320 320 0 0 1 550 185"/>
+      </defs>
+      <text>
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">B E T A&#160;&#160;4</textPath>
+      </text>
+    </svg>
+
+    <p class="tagline">Start Finding Game Discounts Now!</p>
+
+    <nav class="cards" aria-label="Search options">
+      <a class="card" href=""> <!-- Place link here -->
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M28 20h50a4 4 0 0 1 4 4v52H46v-4H34a6 6 0 0 1-6-6V20z"/>
+          <path d="M28 20c-6 0-10 3-10 8s4 8 10 8"/>
+          <path d="M82 76v6a6 6 0 0 1-6 6H36a10 10 0 0 0 10-10"/>
+          <path d="M42 36h28M42 46h28M42 56h28M42 66h18"/>
+        </svg>
+        <span>Search online forums</span>
+      </a>
+
+      <a class="card" href=""> <!-- Place link here -->
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="50" y="10" width="38" height="34" rx="6"/>
+          <path d="M60 44v10l10-10"/>
+          <path d="M60 36V26h5l4-8h4v6h6v12z"/>
+          <rect x="10" y="30" width="34" height="28" rx="6"/>
+          <path d="M20 58v8l8-8"/>
+          <path d="M23 38l-2 14M31 38l-2 14M18 42h16M17 48h16"/>
+          <rect x="40" y="64" width="24" height="20" rx="5"/>
+          <path d="M48 84l4 6 2-6"/>
+          <path d="M52 78c-5-3-6-6-4-8s4-1 4 1c0-2 2-3 4-1s1 5-4 8z"/>
+        </svg>
+        <span>Search Social Media</span>
+      </a>
+
+      <a class="card" href="games.html">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M30 28h40c10 0 16 8 20 22l4 20c2 10-8 14-14 6l-8-10H28l-8 10c-6 8-16 4-14-6l4-20c4-14 10-22 20-22z"/>
+          <path d="M30 42v14M23 49h14"/>
+          <circle cx="68" cy="42" r="2.5"/>
+          <circle cx="68" cy="56" r="2.5"/>
+          <circle cx="61" cy="49" r="2.5"/>
+          <circle cx="75" cy="49" r="2.5"/>
+          <path d="M40 20h20"/>
+        </svg>
+        <span>Search All Games</span>
+      </a>
+    </nav>
+
+    <!-- Results panels: shown via the :target pseudo-class when a card is clicked -->
+    <section id="forums" class="panel">
+      <a class="close" href="#" aria-label="Close">&times;</a>
+      <h2>Search online forums</h2>
+      <form class="search" onsubmit="return false">
+        <input type="search" placeholder="Game title, e.g. Elden Ring" aria-label="Search forums">
+        <button type="submit">Search</button>
+      </form>
+      <p class="hint">Forum results will appear here.</p>
+    </section>
+
+    <section id="social" class="panel">
+      <a class="close" href="#" aria-label="Close">&times;</a>
+      <h2>Search Social Media</h2>
+      <form class="search" onsubmit="return false">
+        <input type="search" placeholder="Game title or #hashtag" aria-label="Search social media">
+        <button type="submit">Search</button>
+      </form>
+      <p class="hint">Social media results will appear here.</p>
+    </section>
+
+  </main>
+
+</body>
+</html>
