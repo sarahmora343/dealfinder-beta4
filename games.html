@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Games – Trending &amp; Best Deals</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="games.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="index.html" class="logo">Home</a>
+  </header>
+
+  <main class="games-page">
+
+    <section class="row" aria-labelledby="trending-title">
+      <h1 id="trending-title">Trending</h1>
+      <div class="carousel">
+        <button class="arrow prev" aria-label="Scroll Trending left">&#10094;</button>
+        <div class="track" id="trending"></div>
+        <button class="arrow next" aria-label="Scroll Trending right">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="deals-title">
+      <h1 id="deals-title">Best Deals</h1>
+      <div class="carousel">
+        <button class="arrow prev" aria-label="Scroll Best Deals left">&#10094;</button>
+        <div class="track" id="deals"></div>
+        <button class="arrow next" aria-label="Scroll Best Deals right">&#10095;</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Placeholder data: replace with real games/prices (or fetch from an API).
+    const trending = Array.from({ length: 10 }, (_, i) => ({
+      title: "game picture", image: "", oldPrice: "old price", newPrice: "new price", store: "logo", url: "#"
+    }));
+    const deals = Array.from({ length: 10 }, (_, i) => ({
+      title: "game picture", image: "", oldPrice: "old price", newPrice: "new price", store: "logo", url: "#"
+    }));
+
+    function render(id, items) {
+      const track = document.getElementById(id);
+      track.innerHTML = items.map(g => `
+        <a class="game" href="${g.url}">
+          <div class="pic">${g.image ? `<img src="${g.image}" alt="${g.title}">` : `<span>${g.title}</span>`}</div>
+          <div class="info">
+            <div class="prices">
+              <s class="old">${g.oldPrice}</s>
+              <span class="new">${g.newPrice}</span>
+            </div>
+            <span class="store">${g.store}</span>
+          </div>
+        </a>`).join("");
+    }
+    render("trending", trending);
+    render("deals", deals);
+
+    // Arrow buttons scroll their own row
+    document.querySelectorAll(".carousel").forEach(c => {
+      const track = c.querySelector(".track");
+      const step = () => track.clientWidth * 0.8;
+      c.querySelector(".prev").addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+      c.querySelector(".next").addEventListener("click", () => track.scrollBy({ left:  step(), behavior: "smooth" }));
+    });
+  </script>
+</body>
+</html>
