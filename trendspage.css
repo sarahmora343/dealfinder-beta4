@@ -36,7 +36,7 @@
 
 .sarah-morales .rectangle-2 {
   position: absolute;
-  top: 0;
+  top: 10;
   left: 0;
   width: 61px;
   height: 531px;
@@ -288,7 +288,7 @@
   top: 315px;
   left: 0;
   width: 312px;
-  height: 323px;
+  height: 310px;
   background-color: var(--color-icon-brand-on-brand);
   border: 5px solid;
   border-color: #ff5151;
@@ -320,7 +320,7 @@
 
 .sarah-morales .social {
   position: absolute;
-  top: 382px;
+  top: 390px;
   left: 83px;
   width: 147px;
   font-family: "K2D-Regular", Helvetica;
@@ -335,7 +335,7 @@
 
 .sarah-morales .text-wrapper-3 {
   position: absolute;
-  top: 445px;
+  top: 453px;
   left: 77px;
   width: 158px;
   font-family: "K2D-Regular", Helvetica;
@@ -431,7 +431,7 @@
 
 .sarah-morales .v-IDEOS {
   position: absolute;
-  top: 315px;
+  top: 320px;
   left: 51px;
   width: 215px;
   font-family: "K2D-Regular", Helvetica;
@@ -470,7 +470,7 @@
 
 .sarah-morales .group-3 {
   position: absolute;
-  top: 456px;
+  top: 475px;
   left: 334px;
   width: 16px;
   height: 35px;
@@ -509,7 +509,7 @@
   top: 964px;
   left: 1044px;
   width: 528px;
-  height: 7px;
+  height: 9px;
   background-color: #ff5151;
   transform: rotate(90deg);
 }
@@ -556,7 +556,7 @@
   top: 1114px;
   left: 0;
   width: 466px;
-  height: 8px;
+  height: 9px;
   background-color: #ff5151;
 }
 
