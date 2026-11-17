@@ -1,0 +1,41 @@
+:root {
+  --colors-backgrounds-secondary: rgba(242, 242, 247, 1);
+  --colors-miscellaneous-sidebar-sidebar-BG-inactive: rgba(237, 244, 250, 1);
+  --color-background-brand-tertiary: var(--color-primitives-brand-100);
+  --color-icon-brand-on-brand: var(--color-primitives-brand-100);
+  --color-primitives-brand-100: rgba(245, 245, 245, 1);
+  --color-primitives-brand-600: rgba(68, 68, 68, 1);
+  --color-primitives-brand-900: rgba(30, 30, 30, 1);
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-colors-mode="light">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-colors-mode="light"] {
+  --colors-backgrounds-secondary: rgba(242, 242, 247, 1);
+  --colors-miscellaneous-sidebar-sidebar-BG-inactive: rgba(237, 244, 250, 1);
+}
+
+[data-colors-mode="dark"] {
+  --colors-backgrounds-secondary: rgba(28, 28, 30, 1);
+  --colors-miscellaneous-sidebar-sidebar-BG-inactive: rgba(19, 20, 20, 1);
+}
+
+[data-color-mode="SDS-light"] {
+  --color-background-brand-tertiary: var(--color-primitives-brand-100);
+  --color-icon-brand-on-brand: var(--color-primitives-brand-100);
+}
+
+[data-color-mode="SDS-dark"] {
+  --color-background-brand-tertiary: var(--color-primitives-brand-600);
+  --color-icon-brand-on-brand: var(--color-primitives-brand-900);
+}
