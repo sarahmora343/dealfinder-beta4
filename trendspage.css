@@ -1,0 +1,675 @@
+/* ==========================================================================
+   What's Trending Now: stylesheet
+   Contents
+   1. Design tokens (custom properties)
+   2. Base / reset
+   3. Utilities
+   4. Header
+   5. Hero (social icons)
+   6. Videos
+   7. Rankings (bottom section)
+      7a. Panels
+      7b. Ranked lists
+      7c. Game text and thumbnails
+      7d. Newly released
+      7e. Spotlight
+   8. Responsive
+   ========================================================================== */
+
+
+/* 1. DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-ink: #000000;
+  --color-accent: #ff5252;       /* red dividers and borders */
+  --color-surface: #f2f2f7;      /* headings and number cells */
+  --color-panel: #f5f5f5;        /* videos strip background */
+  --color-tile: #d9d9d9;         /* gray tiles and pills */
+  --color-circle: #e8f1fb;       /* social icon circles */
+
+  /* Typography */
+  --font-base: "K2D", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-title: clamp(1.75rem, 3.64vw, 4.375rem);   /* 70px at 1924px wide */
+  --fs-nav: clamp(1rem, 1.66vw, 2rem);            /* 32px */
+  --fs-panel-title: clamp(1rem, 1.66vw, 2rem);    /* 32px */
+  --fs-category: clamp(1.25rem, 2.6vw, 3.125rem); /* 50px */
+  --fs-rank: clamp(1.25rem, 2.08vw, 2.5rem);      /* 40px */
+  --fs-game: clamp(0.75rem, 1.04vw, 1.25rem);     /* 20px */
+
+  /* Borders */
+  --rule-thin: clamp(3px, 0.4vw, 8px);
+  --rule-thick: clamp(5px, 0.78vw, 15px);
+
+  /* Spacing and shape */
+  --radius-tile: 15px;
+  --radius-card: 20px;
+  --gap-small: clamp(0.5rem, 1vw, 1rem);
+}
+
+
+/* 2. BASE / RESET
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-base);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h1, h2, p, figure, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+
+/* 3. UTILITIES
+   ========================================================================== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+/* 4. HEADER
+   ========================================================================== */
+.site-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr;
+  align-items: center;
+  gap: var(--gap-small) clamp(0.5rem, 1.5vw, 2rem);
+  padding: clamp(0.5rem, 0.5vw, 0.625rem);
+}
+
+/* The nav wrapper disappears so each list can sit in its own grid column */
+.site-nav {
+  display: contents;
+}
+
+.site-nav__list {
+  display: flex;
+  gap: clamp(0.5rem, 1.5vw, 2rem);
+}
+
+.site-nav__list--start {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.site-nav__list--end {
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.logo {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  width: clamp(2.75rem, 3.5vw, 4.2rem);
+  aspect-ratio: 1;
+  background: var(--color-tile);
+  font-size: clamp(0.625rem, 0.78vw, 0.94rem);
+}
+
+.site-title {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: var(--fs-title);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pill {
+  display: block;
+  padding: 0.1em 0.9em;
+  background: var(--color-tile);
+  border-radius: var(--radius-tile);
+  font-size: var(--fs-nav);
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+/* 5. HERO (SOCIAL ICONS)
+   ========================================================================== */
+.hero {
+  padding: clamp(0.5rem, 1vw, 1rem) 1rem clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.social-list {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 6.5vw, 8rem);
+}
+
+.social-link {
+  display: grid;
+  place-items: center;
+  width: clamp(4.5rem, 9.35vw, 11.25rem);   /* 180px at 1924px wide */
+  aspect-ratio: 1;
+  background: var(--color-circle);
+  border-radius: 50%;
+}
+
+.social-link img {
+  width: 70%;
+  height: auto;
+}
+
+
+/* 6. VIDEOS
+   ========================================================================== */
+.videos {
+  display: grid;
+  grid-template-columns: minmax(9rem, 16.2%) 1fr;
+  align-items: stretch;
+  background: var(--color-panel);
+}
+
+/* Left menu: "Videos" title and category links */
+.videos__title,
+.videos__categories a {
+  display: block;
+  border: 5px solid var(--color-accent);
+  font-size: var(--fs-category);
+  font-weight: 400;
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+
+.videos__title {
+  background: var(--color-tile);
+}
+
+.videos__categories a {
+  background: var(--color-panel);
+  border-top-width: 0;
+}
+
+.videos__categories a:hover {
+  background: var(--color-tile);
+}
+
+/* Video cards with arrows on both sides */
+.videos__carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(0.25rem, 1vw, 1rem);
+  padding: clamp(0.75rem, 0.85vw, 1rem) clamp(0.5rem, 0.75vw, 1rem);
+}
+
+.arrow {
+  padding: 0.5rem;
+  background: none;
+  border: 0;
+}
+
+.arrow img {
+  width: clamp(0.6rem, 0.85vw, 1rem);
+  height: auto;
+}
+
+.video-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(0.5rem, 2.4vw, 3rem);
+}
+
+.video-card {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 216 / 290;
+  background: var(--color-tile);
+  border-radius: var(--radius-card);
+}
+
+.video-card img {
+  width: 59%;
+  opacity: 0.4;
+}
+
+
+/* 7. RANKINGS (BOTTOM SECTION)
+   ========================================================================== */
+.rankings {
+  display: grid;
+  /* minmax(0, ...) lets each panel shrink so long text can't push it wider */
+  grid-template-columns: minmax(0, 24fr) minmax(0, 26fr) minmax(0, 29fr) minmax(0, 21fr);
+  border-top: var(--rule-thick) solid var(--color-accent);
+}
+
+
+/* 7a. Panels
+   -------------------------------------------------------------------------- */
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.panel + .panel {
+  border-left: var(--rule-thick) solid var(--color-accent);
+}
+
+.panel__title {
+  padding: 0.15em 0.5em;
+  background: var(--color-surface);
+  border-bottom: var(--rule-thin) solid var(--color-accent);
+  font-size: var(--fs-panel-title);
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+/* 7b. Ranked lists (popularity and wish-list)
+   -------------------------------------------------------------------------- */
+.ranked-list {
+  flex: 1;
+  display: grid;
+  grid-auto-rows: 1fr;
+  counter-reset: rank;
+}
+
+.ranked-list > li {
+  counter-increment: rank;
+  display: grid;
+  grid-template-columns: clamp(1.75rem, 3.3vw, 4rem) 1fr;
+  align-items: center;
+  border-bottom: var(--rule-thin) solid var(--color-accent);
+}
+
+.ranked-list > li:last-child {
+  border-bottom: 0;
+}
+
+/* The rank number is drawn by CSS so the markup stays a plain ordered list */
+.ranked-list > li::before {
+  content: counter(rank);
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  background: var(--color-surface);
+  border-right: var(--rule-thin) solid var(--color-accent);
+  font-size: var(--fs-rank);
+  font-weight: 700;
+}
+
+/* Popularity rows hold only text */
+.panel--popularity .ranked-list > li > .game__text {
+  padding: 0.5em clamp(0.5rem, 1vw, 1.25rem);
+  font-size: clamp(0.875rem, 1.25vw, 1.5rem);   /* 24px: larger than other lists */
+}
+
+/* Wish-list: 1-5 in the left column, 6-10 in the right column */
+.ranked-list--two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, 1fr);
+  grid-auto-flow: column;
+}
+
+.ranked-list--two-col > li {
+  grid-template-columns: clamp(1.5rem, 3.1vw, 3.75rem) 1fr;
+}
+
+.ranked-list--two-col > li:nth-child(5) {
+  border-bottom: 0;
+}
+
+.ranked-list--two-col > li:nth-child(n + 6) {
+  border-left: var(--rule-thick) solid var(--color-accent);
+}
+
+/* Wish-list rows: thumbnail beside text */
+.panel--wishlist .ranked-list > li {
+  grid-template-areas: "rank thumb text";
+  grid-template-columns: clamp(1.5rem, 3.1vw, 3.75rem) auto minmax(0, 1fr);
+}
+
+/* Slightly smaller text so "Action/Adv." fits in these narrow rows */
+.panel--wishlist .game__text {
+  font-size: clamp(0.7rem, 0.95vw, 1.125rem);
+  overflow-wrap: break-word;
+}
+
+.panel--wishlist .ranked-list > li::before { grid-area: rank; }
+.panel--wishlist .ranked-list > li > .thumb { grid-area: thumb; margin: 0 0.35rem; }
+.panel--wishlist .ranked-list > li > .game__text { grid-area: text; padding-right: 0.35rem; }
+
+
+/* 7c. Game text and thumbnails
+   -------------------------------------------------------------------------- */
+.game__text {
+  font-size: var(--fs-game);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.game__name,
+.game__genre {
+  display: block;
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  background: var(--color-tile);
+  border-radius: var(--radius-tile);
+}
+
+.thumb img {
+  width: 65%;
+}
+
+.thumb--small {
+  width: clamp(2.5rem, 3.6vw, 4.375rem);   /* 70px */
+  aspect-ratio: 70 / 77;
+}
+
+.thumb--small img {
+  width: 75%;
+}
+
+.thumb--large {
+  width: 100%;
+  max-width: 155px;
+  aspect-ratio: 1;
+}
+
+
+/* 7d. Newly released
+   -------------------------------------------------------------------------- */
+.new-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+}
+
+.new-grid > li {
+  display: grid;
+  place-items: center;
+  padding: clamp(0.5rem, 1.5vw, 1.75rem) clamp(0.5rem, 1vw, 1.25rem);
+  border-bottom: var(--rule-thin) solid var(--color-accent);
+}
+
+.new-grid > li:nth-child(odd) {
+  border-right: var(--rule-thin) solid var(--color-accent);
+}
+
+.new-grid > li:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.game-card {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  justify-items: start;
+}
+
+
+/* 7e. Spotlight
+   -------------------------------------------------------------------------- */
+.spotlight {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  padding: clamp(0.75rem, 2.2vw, 2.5rem) clamp(0.75rem, 2.5vw, 3rem);
+}
+
+.thumb--spotlight {
+  width: 100%;
+  aspect-ratio: 307 / 332;
+}
+
+.thumb--spotlight img {
+  width: 58%;
+}
+
+.spotlight__note {
+  display: block;
+  margin-top: 0.5em;
+}
+
+
+/* 8. RESPONSIVE
+   ========================================================================== */
+
+/* Tablets and small laptops */
+@media (max-width: 1200px) {
+  .video-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .rankings {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Two panels per row: reset the vertical dividers, then add a row divider */
+  .panel + .panel {
+    border-left: 0;
+  }
+
+  .panel:nth-child(even) {
+    border-left: var(--rule-thick) solid var(--color-accent);
+  }
+
+  .panel:nth-child(n + 3) {
+    border-top: var(--rule-thick) solid var(--color-accent);
+  }
+
+  .game__text {
+    font-size: clamp(0.8rem, 1.8vw, 1.25rem);
+  }
+
+  .panel__title {
+    font-size: clamp(1rem, 2.4vw, 1.75rem);
+  }
+
+  .ranked-list > li::before {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .thumb--large {
+    max-width: 120px;
+  }
+}
+
+/* Phones */
+@media (max-width: 720px) {
+
+  /* Header: logo and title on one row, links wrap below */
+  .site-header {
+    grid-template-columns: auto 1fr;
+  }
+
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .site-title {
+    grid-column: 2;
+    grid-row: 1;
+    white-space: normal;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .site-nav__list {
+    display: contents;
+  }
+
+  .pill {
+    font-size: 1rem;
+  }
+
+  /* Social icons wrap into two rows of two */
+  .social-list {
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+
+  .social-link {
+    width: 5.5rem;
+  }
+
+  /* Videos: category menu becomes a row of tabs above the cards */
+  .videos {
+    grid-template-columns: 1fr;
+  }
+
+  .videos__menu {
+    display: grid;
+  }
+
+  .videos__categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .videos__title,
+  .videos__categories a {
+    font-size: 1.25rem;
+  }
+
+  .videos__categories a {
+    border-top-width: 0;
+  }
+
+  .videos__carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .video-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* Rankings: one panel per row */
+  .rankings {
+    grid-template-columns: 1fr;
+  }
+
+  .panel:nth-child(even) {
+    border-left: 0;
+  }
+
+  .panel + .panel {
+    border-top: var(--rule-thick) solid var(--color-accent);
+  }
+
+  .panel__title {
+    font-size: 1.125rem;
+  }
+
+  .game__text {
+    font-size: 0.875rem;
+  }
+
+  .panel--popularity .ranked-list > li > .game__text {
+    font-size: 1rem;
+  }
+
+  .ranked-list > li {
+    min-height: 4rem;
+  }
+
+  .ranked-list > li::before {
+    font-size: 1.5rem;
+  }
+
+  /* Wish-list: a single column, numbered 1 to 10 */
+  .ranked-list--two-col {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+
+  .ranked-list--two-col > li:nth-child(5) {
+    border-bottom: var(--rule-thin) solid var(--color-accent);
+  }
+
+  .ranked-list--two-col > li:nth-child(n + 6) {
+    border-left: 0;
+  }
+
+  .thumb--small {
+    width: 3rem;
+  }
+
+  .thumb--large {
+    max-width: 100px;
+  }
+
+  .spotlight {
+    justify-items: center;
+  }
+
+  .thumb--spotlight {
+    max-width: 280px;
+  }
+
+  .spotlight .game__text {
+    justify-self: stretch;
+  }
+}
