@@ -1,0 +1,47 @@
+.header {
+  background-color: rgb(238, 96, 89);
+  overflow: hidden;
+  width: 100%;
+  min-width: 1440px;
+  min-height: 48px;
+  position: relative;
+  padding-top:10px;
+  display:flex;
+  gap:16px;
+}
+.header .text-wrapper {
+  text-align: center;
+  width: 80px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.header .rectangle {
+  width: 80px;
+  height: 30px;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.header .header-rectangle {
+  width: 80px;
+  height: 30px;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.Line-Under-Head {
+  height: 20px;
+  background-color: rgb(238, 96, 89);
+  border-top:10px solid white;
+  margin-top:0px;
+}
